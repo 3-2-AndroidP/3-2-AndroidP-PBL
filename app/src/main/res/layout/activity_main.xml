@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".MainActivity"
+    tools:visibility="visible">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
@@ -17,75 +18,109 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:title="SNS"
-        app:titleMarginStart="185dp"/>
+        app:titleMarginStart="185dp">
+
+        <ImageButton
+            android:id="@+id/imageButton"
+            android:layout_width="43dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="3dp"
+            android:background="#2196F3"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@android:drawable/ic_menu_search" />
+
+        <EditText
+            android:id="@+id/editTextTextPersonName3"
+            android:layout_width="178dp"
+            android:layout_height="42dp"
+            android:layout_marginTop="4dp"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:text="친구찾기"
+            app:layout_constraintStart_toEndOf="@+id/imageButton"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="59dp"
+            android:layout_height="45dp"
+            android:layout_marginStart="36dp"
+            android:layout_marginTop="4dp"
+            app:layout_constraintStart_toEndOf="@+id/editTextTextPersonName3"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:srcCompat="@tools:sample/avatars" />
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="로그아웃"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            app:layout_constraintStart_toEndOf="@+id/imageView"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.appcompat.widget.Toolbar>
 
     <TextView
-        android:id="@+id/ID"
+        android:id="@+id/mypostTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="60dp"
-        android:layout_marginTop="48dp"
-        android:text="ID"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="24dp"
+        android:text="내 게시글"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
-        android:textSize="25dp"
-        android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/toolbar" />
 
-    <EditText
-        android:id="@+id/editTextTextPersonName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="48dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:text=""
-        app:layout_constraintStart_toEndOf="@+id/ID"
-        app:layout_constraintTop_toTopOf="@+id/ID" />
-
-    <TextView
-        android:id="@+id/password"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="60dp"
-        android:layout_marginTop="48dp"
-        android:text="PW"
-        android:textAppearance="@style/TextAppearance.AppCompat.Large"
-        android:textSize="25dp"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ID" />
-
-    <EditText
-        android:id="@+id/editTextTextPersonName2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:ems="10"
-        android:inputType="textPassword"
-        android:text=""
-        app:layout_constraintStart_toEndOf="@+id/password"
-        app:layout_constraintTop_toTopOf="@+id/password" />
+    <Button
+        android:id="@+id/articleButton"
+        android:layout_width="334dp"
+        android:layout_height="82dp"
+        android:layout_marginTop="8dp"
+        android:text="게시글1"
+        app:cornerRadius="10dp"
+        app:layout_constraintStart_toStartOf="@+id/mypostTextView"
+        app:layout_constraintTop_toBottomOf="@+id/mypostTextView" />
 
     <Button
-        android:id="@+id/loginButton"
-        android:layout_width="165dp"
-        android:layout_height="47dp"
-        android:layout_marginStart="120dp"
-        android:layout_marginTop="256dp"
-        android:text="로그인"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName2" />
+        android:id="@+id/articleButton2"
+        android:layout_width="334dp"
+        android:layout_height="82dp"
+        android:layout_marginTop="8dp"
+        android:text="게시글2"
+        app:cornerRadius="10dp"
+        app:layout_constraintStart_toStartOf="@+id/mypostTextView"
+        app:layout_constraintTop_toBottomOf="@+id/articleButton" />
 
     <Button
-        android:id="@+id/signupButton"
-        android:layout_width="165dp"
-        android:layout_height="48dp"
-        android:layout_marginTop="20dp"
-        android:text="회원가입"
-        app:layout_constraintStart_toStartOf="@+id/loginButton"
-        app:layout_constraintTop_toBottomOf="@+id/loginButton" />
+        android:id="@+id/articleButton3"
+        android:layout_width="334dp"
+        android:layout_height="82dp"
+        android:layout_marginTop="8dp"
+        android:text="게시글2"
+        app:cornerRadius="10dp"
+        app:layout_constraintStart_toStartOf="@+id/mypostTextView"
+        app:layout_constraintTop_toBottomOf="@+id/articleButton2" />
 
+    <ImageButton
+        android:id="@+id/postAddButton"
+        android:layout_width="197dp"
+        android:layout_height="65dp"
+        android:background="@drawable/post_button"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@android:drawable/ic_menu_edit" />
+
+    <ImageButton
+        android:id="@+id/showFriendButton"
+        android:layout_width="197dp"
+        android:layout_height="65dp"
+        android:layout_marginEnd="8dp"
+        android:background="@drawable/post_button"
+        android:scaleType="centerInside"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/postAddButton"
+        app:srcCompat="@drawable/profile" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

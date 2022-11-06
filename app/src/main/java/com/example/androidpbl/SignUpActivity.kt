@@ -13,7 +13,7 @@ class SignUpActivity : AppCompatActivity() {
         //회원가입에 대한 오류 처리 아직안함
         val signupDoneButton = findViewById<Button>(R.id.signupDoneButton)
         signupDoneButton.setOnClickListener {
-            val intent = Intent(this, MainActivity::class.java)
+            val intent = Intent(this, LoginActivity::class.java)
             startActivity(intent)
         }
     }
