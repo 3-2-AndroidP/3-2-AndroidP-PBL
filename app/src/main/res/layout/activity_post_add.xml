@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/editPostButton"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".PostAddActivity"
+    tools:visibility="visible">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?attr/colorPrimary"
+        android:gravity="center"
+        android:minHeight="?attr/actionBarSize"
+        android:textAlignment="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:titleMarginStart="185dp">
+
+        <ImageButton
+            android:id="@+id/imageButton"
+            android:layout_width="43dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="3dp"
+            android:background="#2196F3"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@android:drawable/ic_menu_search" />
+
+        <EditText
+            android:id="@+id/editTextTextPersonName3"
+            android:layout_width="178dp"
+            android:layout_height="42dp"
+            android:layout_marginTop="4dp"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:text="친구찾기" />
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="59dp"
+            android:layout_height="45dp"
+            android:layout_marginStart="36dp"
+            android:layout_marginTop="4dp"
+            tools:srcCompat="@tools:sample/avatars" />
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="로그아웃"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+    </androidx.appcompat.widget.Toolbar>
+
+    <EditText
+        android:id="@+id/editTitle"
+        android:layout_width="0dp"
+        android:layout_height="52dp"
+        android:backgroundTint="#B3B3B3"
+        android:ems="10"
+        android:hint="제목"
+        android:inputType="textPersonName"
+        android:padding="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar"
+        app:layout_constraintVertical_bias="0.15" />
+
+    <EditText
+        android:id="@+id/editPost"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="4dp"
+        android:background="@android:color/transparent"
+        android:ems="10"
+        android:hint="내용"
+        android:inputType="textPersonName"
+        android:padding="16dp"
+        app:layout_constraintBottom_toTopOf="@+id/postAddButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTitle"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <ImageButton
+        android:id="@+id/postAddButton"
+        android:layout_width="205dp"
+        android:layout_height="65dp"
+        android:background="@drawable/post_button"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@android:drawable/ic_menu_edit" />
+
+    <ImageButton
+        android:id="@+id/showFriendButton"
+        android:layout_width="205dp"
+        android:layout_height="65dp"
+        android:background="@drawable/post_button"
+        android:scaleType="centerInside"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:srcCompat="@drawable/profile" />
+
+    <Button
+        android:id="@+id/completeButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="완료"
+        app:layout_constraintBottom_toTopOf="@+id/editTitle"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
