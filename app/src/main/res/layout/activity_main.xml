@@ -119,7 +119,7 @@
         android:layout_height="65dp"
         android:layout_marginEnd="8dp"
         android:background="@drawable/post_button"
-        android:scaleType="centerInside"
+        android:scaleType="center"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/postAddButton"
         app:srcCompat="@drawable/profile" />
