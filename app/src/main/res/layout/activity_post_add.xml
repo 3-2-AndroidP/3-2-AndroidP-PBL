@@ -61,34 +61,31 @@
         android:id="@+id/editTitle"
         android:layout_width="0dp"
         android:layout_height="52dp"
+        android:layout_marginTop="48dp"
         android:backgroundTint="#B3B3B3"
         android:ems="10"
         android:hint="제목"
         android:inputType="textPersonName"
         android:padding="16dp"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar"
-        app:layout_constraintVertical_bias="0.15" />
+        app:layout_constraintTop_toBottomOf="@+id/toolbar" />
 
     <EditText
         android:id="@+id/editPost"
         android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
         android:background="@android:color/transparent"
         android:ems="10"
         android:hint="내용"
         android:inputType="textPersonName"
         android:padding="16dp"
-        app:layout_constraintBottom_toTopOf="@+id/postAddButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTitle"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toBottomOf="@+id/editTitle" />
 
     <ImageButton
         android:id="@+id/postAddButton"
@@ -104,7 +101,7 @@
         android:layout_width="205dp"
         android:layout_height="65dp"
         android:background="@drawable/post_button"
-        android:scaleType="centerInside"
+        android:scaleType="center"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:srcCompat="@drawable/profile" />
@@ -113,10 +110,11 @@
         android:id="@+id/completeButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="48dp"
         android:text="완료"
-        app:layout_constraintBottom_toTopOf="@+id/editTitle"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar" />
+        app:layout_constraintTop_toBottomOf="@+id/editPost" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
