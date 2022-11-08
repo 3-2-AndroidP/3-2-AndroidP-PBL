@@ -26,5 +26,18 @@ class MainActivity : AppCompatActivity() {
             val intent = Intent(this, PostAddActivity::class.java)
             startActivity(intent)
         }
+
+        // 화면좀 보려고 추가했습니다
+        val showFriendButton = findViewById<ImageButton>(R.id.showFriendButton)
+        showFriendButton.setOnClickListener {
+            val intent = Intent(this, FriendListActivity::class.java);
+            startActivity(intent)
+        }
+
+        val searchFriendButton = findViewById<ImageButton>(R.id.imageButton)
+        searchFriendButton.setOnClickListener {
+            val intent = Intent(this, FriendSearchActivity::class.java)
+            startActivity(intent);
+        }
     }
 }
