@@ -20,6 +20,7 @@ class MainActivity : AppCompatActivity() {
         val article3 = findViewById<Button>(R.id.articleButton3)
         article3.setBackgroundColor(Color.GRAY)
 
+
         val postAddButton = findViewById<ImageButton>(R.id.postAddButton)
         postAddButton.setOnClickListener {
             val intent = Intent(this, PostAddActivity::class.java)
