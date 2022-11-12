@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "631864681765",
+    "project_id": "android-kotlin-lecture-80487",
+    "storage_bucket": "android-kotlin-lecture-80487.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:631864681765:android:29f69bab6683bc7a4da6cc",
+        "android_client_info": {
+          "package_name": "com.example.week9"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "631864681765-1o2akvsodslp7ohn9blm3f2atcck6rtd.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDOW88QVdQCyaBmzROxlu5V2kgyrdZVrTw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "631864681765-1o2akvsodslp7ohn9blm3f2atcck6rtd.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
