@@ -4,6 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.*
+import android.widget.EditText
 import android.widget.ImageButton
 import android.widget.ImageView
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -27,15 +28,22 @@ class MainActivity : AppCompatActivity() {
         }
 
         // 화면좀 보려고 추가했습니다
+
         val showFriendButton = findViewById<ImageView>(R.id.showFriendButton)
+        val searchFriendText = findViewById<EditText>(R.id.editTextTextPersonName3)
+
         showFriendButton.setOnClickListener {
+//            val input = searchFriendText.getText()
             val intent = Intent(this, FriendListActivity::class.java);
-            startActivity(intent)
+//            intent.putExtra("searchName", input)
+            startActivity(intent) // 검색창의 이름을 전달한다
         }
 
         val searchFriendButton = findViewById<ImageButton>(R.id.imageButton)
         searchFriendButton.setOnClickListener {
+            val input = searchFriendText.text.toString()
             val intent = Intent(this, FriendSearchActivity::class.java)
+            intent.putExtra("searchName", input)
             startActivity(intent);
         }
 
