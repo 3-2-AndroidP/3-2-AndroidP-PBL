@@ -1,5 +1,6 @@
 package com.example.androidpbl
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -25,7 +26,8 @@ class FriendListActivity : AppCompatActivity() {
         binding.friendList.adapter = RecyclerViewAdapter()
         binding.friendList.layoutManager = LinearLayoutManager(this)
         binding.friendList.setHasFixedSize(true)
-
+        binding.friendList.addItemDecoration(VerticalItemDecorator(10))
+        binding.friendList.addItemDecoration(HorizontalItemDecorator(30))
     }
 
     inner class RecyclerViewAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
@@ -51,14 +53,27 @@ class FriendListActivity : AppCompatActivity() {
         }
 
         inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+            val clickName = view.findViewById<TextView>(R.id.nameText)
+            val clickEmail = view.findViewById<TextView>(R.id.textView6)
+            fun bind(item: SearchFriend) {
+                clickName.text = item.name
+                clickEmail.text = item.email
+                itemView.setOnClickListener {
+                    val intent = Intent(this@FriendListActivity, FriendDetailActivity::class.java)
+                    intent.putExtra("friendInfo", item)
+                    startActivity(intent);
+                }
+
+            }
+
         }
 
         // onCreateViewHolder에서 만든 view와 실제 데이터를 연결
         override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
             var viewHolder = (holder as ViewHolder).itemView
-
             viewHolder.findViewById<TextView>(R.id.nameText).text = UserArray[position].name
             viewHolder.findViewById<TextView>(R.id.textView6).text = UserArray[position].email
+            holder.bind(UserArray[position])
         }
 
         // 리사이클러뷰의 아이템 총 개수 반환
@@ -66,4 +81,6 @@ class FriendListActivity : AppCompatActivity() {
             return UserArray.size
         }
     }
+
+
 }

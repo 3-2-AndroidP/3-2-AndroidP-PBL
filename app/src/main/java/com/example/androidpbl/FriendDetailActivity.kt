@@ -18,5 +18,10 @@ class FriendDetailActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
+        // 클릭한 친구의 이메일
+        val intent = intent //전달할 데이터를 받을 Intent
+        val friendInfo = intent.getSerializableExtra("friendInfo")as SearchFriend
+        println("@@@@@@@@@@@@@@@@@@@@@@@@@${friendInfo.name} ${friendInfo.email}") // 이름과 이메일 전달
+
     }
 }
