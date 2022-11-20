@@ -1,9 +1,16 @@
 package com.example.androidpbl
 
+import android.content.DialogInterface
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.widget.Button
+import android.widget.EditText
+import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
 
 class LoginActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -19,8 +26,30 @@ class LoginActivity : AppCompatActivity() {
 
         val loginButton = findViewById<Button>(R.id.loginButton)
         loginButton.setOnClickListener {
-            val intent = Intent(this, MainActivity::class.java)
-            startActivity(intent)
+            val emailInput = findViewById<EditText>(R.id.userEmailInput).text.toString()
+            val password = findViewById<EditText>(R.id.passwordInput).text.toString()
+            doLogin(emailInput, password)
         }
+    }
+
+    private fun doLogin(userEmail: String, password: String) {
+        Firebase.auth.signInWithEmailAndPassword(userEmail, password)
+            .addOnCompleteListener {
+                if (it.isSuccessful) {
+                    startActivity(
+                        Intent(this, MainActivity::class.java)
+                    )
+                    finish()
+                } else {
+                    Log.w("LoginActivity", "signInWithEmail", it.exception)
+                    AlertDialog.Builder(this)
+                        .setTitle("로그인 실패")
+                        .setMessage("이메일 또는 비밀번호가 일치하지 않습니다.")
+                        .setPositiveButton("확인", DialogInterface.OnClickListener { dialog, id ->
+
+                        })
+                        .show()
+                }
+            }
     }
 }
