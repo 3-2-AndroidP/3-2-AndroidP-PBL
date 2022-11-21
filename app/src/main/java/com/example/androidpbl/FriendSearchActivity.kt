@@ -12,12 +12,14 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.androidpbl.databinding.ActivityFriendSearchBinding
 import com.google.android.material.snackbar.Snackbar
+import com.google.firebase.firestore.Query
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 
 
 class FriendSearchActivity : AppCompatActivity() {
-
+    private var loginUserEmail: String? = null
+    private var search: String? = null
     val firestore = Firebase.firestore
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -31,23 +33,40 @@ class FriendSearchActivity : AppCompatActivity() {
         binding.friendSearch.addItemDecoration(VerticalItemDecorator(10))
         binding.friendSearch.addItemDecoration(HorizontalItemDecorator(30))
 
-        val intent = intent //전달할 데이터를 받을 Intent
-        val searchName = intent.getStringExtra("searchName")
+//        val intent = intent //전달할 데이터를 받을 Intent
+//        val searchName = intent.getStringExtra("searchName")
 
-        binding.textView3.setText("'${searchName}' 검색 결과")
 
+        binding.postAddButton3.setOnClickListener {
+            val intent = Intent(this, PostAddActivity::class.java)
+            startActivity(intent)
+        }
+
+        binding.showFriendButton3.setOnClickListener {
+            val intent = Intent(this, FriendListActivity::class.java);
+            startActivity(intent) // 검색창의 이름을 전달한다
+        }
+
+//        loginUserEmail= intent?.getStringExtra("loginUserEmail") ?: ""
+
+        val intent = intent
+        val data = intent.getSerializableExtra("searchName") as ArrayList<String>?
+        loginUserEmail = data!![0] // 검색한 사람의 이메일
+        search = data[1] // 검색할 이름
+
+        binding.textView3.setText("'${search}' 검색 결과")
     }
         inner class RecyclerViewAdapter2 : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
         var UserArray: ArrayList<SearchFriend> = arrayListOf()
-        val searchName = intent.getStringExtra("searchName")
+//        val searchName = intent.getStringExtra("searchName")
         init { // 검색결과 출력
-            firestore?.collection("users")
+            firestore?.collection("users")?.orderBy("name", Query.Direction.ASCENDING)
                 ?.addSnapshotListener { querySnapshot, firebaseFirestoreException ->
                     // ArrayList 비워줌
                     UserArray.clear()
                     for (snapshot in querySnapshot!!.documents) {
                         var item = snapshot.toObject(SearchFriend::class.java)
-                        if (item?.name!!.contains(searchName.toString())) {// 문서의 name 속성이 검색한 이름과 같으면 넣는다
+                        if (item?.name!!.contains(search.toString())) {// 문서의 name 속성이 검색한 이름과 같으면 넣는다
                             UserArray.add(item!!)
                         }
                     }
@@ -62,11 +81,11 @@ class FriendSearchActivity : AppCompatActivity() {
         }
 
         inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-            val clickName = view.findViewById<TextView>(R.id.textView2) // 클릭 텍스트뷰 이름
-            val clickEmail = view.findViewById<TextView>(R.id.textView7)
+//            val clickName = view.findViewById<TextView>(R.id.textView2) // 클릭 텍스트뷰 이름
+//            val clickEmail = view.findViewById<TextView>(R.id.textView7)
 
             init{
-                var test = "김헤지" // 김혜지로 테스트 // 한테  친구 추가
+//                var test = "김헤지" // 김혜지로 테스트 // 한테  친구 추가
 //                val Ref = firestore?.collection("users")?.document(test)?.collection("friends")
 //                val clickName = view.findViewById<TextView>(R.id.textView2).text // 클릭 텍스트뷰 이름
 //                val clickEmail = view.findViewById<TextView>(R.id.textView7).text
@@ -90,7 +109,7 @@ class FriendSearchActivity : AppCompatActivity() {
                         "email" to clickEmail
                     )
                     firestore?.collection("users")
-                        ?.document(test)?.collection("friends")?.document(clickEmail.toString())?.set(itemMap)
+                        ?.document(loginUserEmail.toString())?.collection("friends")?.document(clickEmail.toString())?.set(itemMap)
                         ?.addOnSuccessListener {  }
                     Snackbar.make(view, "${clickName}님이 팔로우 목록에 추가되었습니다.", Snackbar.LENGTH_LONG). show();
                 }

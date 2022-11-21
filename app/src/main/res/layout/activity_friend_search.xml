@@ -5,28 +5,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <ImageButton
-        android:id="@+id/showFriendButton4"
-        android:layout_width="197dp"
-        android:layout_height="65dp"
-        android:layout_marginEnd="8dp"
-        android:background="@drawable/post_button"
-        android:contentDescription="Show Freind List"
-        android:scaleType="center"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/postAddButton3"
-        app:srcCompat="@drawable/profile" />
-
-    <ImageButton
-        android:id="@+id/postAddButton3"
-        android:layout_width="197dp"
-        android:layout_height="65dp"
-        android:background="@drawable/post_button"
-        android:contentDescription="Post Add"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@android:drawable/ic_menu_edit" />
-
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar3"
         android:layout_width="0dp"
@@ -44,25 +22,18 @@
         android:id="@+id/logout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
         android:text="로그아웃"
+        app:layout_constraintBottom_toBottomOf="@+id/toolbar3"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/imageView4"
         app:layout_constraintTop_toTopOf="parent" />
-
-    <ImageView
-        android:id="@+id/imageView4"
-        android:layout_width="59dp"
-        android:layout_height="45dp"
-        android:layout_marginTop="4dp"
-        android:layout_marginEnd="104dp"
-        app:layout_constraintEnd_toEndOf="@+id/toolbar3"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:srcCompat="@tools:sample/avatars" />
 
     <TextView
         android:id="@+id/textView3"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
         android:text="검색결과"
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -71,12 +42,37 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/friendSearch"
-        android:layout_width="409dp"
-        android:layout_height="563dp"
-        app:layout_constraintBottom_toTopOf="@+id/postAddButton3"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout3"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView3" />
+
+    <LinearLayout
+        android:id="@+id/linearLayout3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="1dp"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <Button
+            android:id="@+id/postAddButton3"
+            android:layout_width="0dp"
+            android:layout_height="70dp"
+            android:layout_marginEnd="1dp"
+            android:layout_weight="1"
+            android:text="게시글 추가" />
+
+        <Button
+            android:id="@+id/showFriendButton3"
+            android:layout_width="0dp"
+            android:layout_height="70dp"
+            android:layout_weight="1"
+            android:text="친구목록" />
+    </LinearLayout>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

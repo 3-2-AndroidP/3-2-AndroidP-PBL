@@ -10,12 +10,13 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.androidpbl.databinding.ActivityFriendListBinding
+import com.google.firebase.firestore.Query
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 
 
 class FriendListActivity : AppCompatActivity() {
-
+    var listUserEmail: String? = null
     val firestore = Firebase.firestore
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -28,13 +29,26 @@ class FriendListActivity : AppCompatActivity() {
         binding.friendList.setHasFixedSize(true)
         binding.friendList.addItemDecoration(VerticalItemDecorator(10))
         binding.friendList.addItemDecoration(HorizontalItemDecorator(30))
+
+        binding.postAddButton2.setOnClickListener {
+            val intent = Intent(this, PostAddActivity::class.java)
+            startActivity(intent)
+        }
+
+        binding.showFriendButton2.setOnClickListener {
+            val intent = Intent(this, FriendListActivity::class.java);
+            startActivity(intent) // 검색창의 이름을 전달한다
+        }
+
+        val intent = intent
+        listUserEmail = intent.getStringExtra("loginUserEmail").toString()
     }
 
     inner class RecyclerViewAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
         var UserArray: ArrayList<SearchFriend> = arrayListOf()
-        var test = "김헤지" // 김혜지로 테스트
+//        val listUserEmail = "aaa@naver.com"
         init {  // users의 문서를 불러온 뒤 SearchFriend으로 변환해 ArrayList에 담음
-            firestore?.collection("users")?.document(test)?.collection("friends")
+            firestore?.collection("users")?.document(listUserEmail.toString())?.collection("friends")?.orderBy("name", Query.Direction.ASCENDING)
                 ?.addSnapshotListener { querySnapshot, firebaseFirestoreException ->
                 // ArrayList 비워줌
                 UserArray.clear()

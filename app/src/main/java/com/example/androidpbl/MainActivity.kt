@@ -2,10 +2,10 @@ package com.example.androidpbl
 
 import android.content.Context
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.*
 import android.widget.*
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.androidpbl.databinding.ArticlesItemMainBinding
@@ -14,6 +14,7 @@ import com.google.firebase.firestore.CollectionReference
 import com.google.firebase.firestore.QueryDocumentSnapshot
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
+
 data class Posts( val title: String, val content : String) {
     constructor(doc: QueryDocumentSnapshot) :
             this(doc.id, doc["내용"].toString())
@@ -60,17 +61,19 @@ class MainActivity : AppCompatActivity() {
         val searchFriendText = findViewById<EditText>(R.id.editTextTextPersonName3)
 
         showFriendButton.setOnClickListener {
-//            val input = searchFriendText.getText()
-            val intent = Intent(this, FriendListActivity::class.java);
-//            intent.putExtra("searchName", input)
+            val intent = Intent(this, FriendListActivity::class.java)
+            intent.putExtra("loginUserEmail",  loginUserEmail)
             startActivity(intent) // 검색창의 이름을 전달한다
         }
 
         val searchFriendButton = findViewById<ImageButton>(R.id.imageButton)
         searchFriendButton.setOnClickListener {
+            val searchName: ArrayList<String> = ArrayList()
             val input = searchFriendText.text.toString()
+            searchName.add(loginUserEmail.toString())
+            searchName.add(input)
             val intent = Intent(this, FriendSearchActivity::class.java)
-            intent.putExtra("searchName", input)
+            intent.putExtra("searchName", searchName)
             startActivity(intent);
         }
     }
