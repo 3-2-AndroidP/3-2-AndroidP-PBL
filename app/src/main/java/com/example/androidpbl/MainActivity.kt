@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.androidpbl.databinding.ArticlesItemMainBinding
 import com.google.firebase.auth.ktx.auth
+import com.google.firebase.firestore.CollectionReference
 import com.google.firebase.firestore.QueryDocumentSnapshot
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
@@ -24,13 +25,16 @@ data class Posts( val title: String, val content : String) {
 }
 class MainActivity : AppCompatActivity() {
     private var adapter: MyAdapter? = null
-    var test = "aaa@naver.com" // 김혜지로 테스트
+    private var loginUserEmail: String? = null
     val firestore = Firebase.firestore
-    private val itemsCollectionRef = firestore.collection("users").document(test).collection("posts")
+    private var itemsCollectionRef : CollectionReference? =null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        loginUserEmail= intent?.getStringExtra("loginUserEmail") ?: ""
+
+        itemsCollectionRef = firestore.collection("users").document(loginUserEmail!!).collection("posts")
 
         val recyclerView = findViewById<RecyclerView>(R.id.main_recyclerView)
         recyclerView.layoutManager = LinearLayoutManager(this)
@@ -75,7 +79,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun updateList() {
-        itemsCollectionRef.get().addOnSuccessListener {
+        itemsCollectionRef?.get()?.addOnSuccessListener {
             val posts = mutableListOf<Posts>()
             for (doc in it) {
                 posts.add(Posts(doc))
@@ -95,7 +99,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         init {
-            firestore.collection("users").document(test).collection("posts")
+            firestore.collection("users").document(loginUserEmail!!).collection("posts")
                 .addSnapshotListener { querySnapshot, firebaseFirestoreException ->
                     updateList()
                 }
