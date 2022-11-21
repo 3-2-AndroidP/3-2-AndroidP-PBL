@@ -18,6 +18,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:title="SNS"
+        app:titleTextColor="@color/white"
         app:titleMarginStart="185dp" />
 
     <TextView
@@ -78,7 +79,7 @@
         android:layout_height="67dp"
         android:layout_marginTop="100dp"
         android:text="로그인"
-        android:textColor="@color/black"
+        android:textColor="@color/white"
         android:textSize="18dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.495"
@@ -91,7 +92,7 @@
         android:layout_height="68dp"
         android:layout_marginTop="8dp"
         android:text="회원가입"
-        android:textColor="@color/black"
+        android:textColor="@color/white"
         android:textSize="18dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"

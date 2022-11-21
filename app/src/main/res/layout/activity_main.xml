@@ -3,21 +3,17 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-
     android:layout_height="match_parent"
-    tools:context=".MainActivity"
-    tools:visibility="visible">
+    tools:context=".MainActivity">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="?attr/colorPrimary"
-        android:gravity="center"
         android:minHeight="?attr/actionBarSize"
         android:textAlignment="center"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
@@ -40,30 +36,20 @@
             android:inputType="textPersonName"
             android:hint="친구찾기"
             android:textColorHint="#FFFFFF"
-            android:textColor="#FFFFFF"
-            app:layout_constraintStart_toEndOf="@+id/imageButton"
+            app:layout_constraintStart_toEndOf="@+id/logutTextView"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <ImageView
-            android:id="@+id/imageView10"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            app:srcCompat="@drawable/profile"
-            tools:layout_editor_absoluteX="154dp"
-            tools:layout_editor_absoluteY="120dp" />
-
-        <TextView
+        <Button
             android:id="@+id/logutTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="8dp"
             android:text="로그아웃"
-            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            android:layout_marginStart="50dp"
             android:textColor="#FFFFFF"
-            app:layout_constraintStart_toEndOf="@+id/imageView"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="@+id/toolbar"
+            />
     </androidx.appcompat.widget.Toolbar>
 
     <TextView
