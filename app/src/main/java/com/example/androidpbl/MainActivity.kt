@@ -68,12 +68,10 @@ class MainActivity : AppCompatActivity() {
 
         val searchFriendButton = findViewById<ImageButton>(R.id.imageButton)
         searchFriendButton.setOnClickListener {
-            val searchName: ArrayList<String> = ArrayList()
-            val input = searchFriendText.text.toString()
-            searchName.add(loginUserEmail.toString())
-            searchName.add(input)
+            val searchName = searchFriendText.text.toString()
             val intent = Intent(this, FriendSearchActivity::class.java)
             intent.putExtra("searchName", searchName)
+            intent.putExtra("loginUserEmail", loginUserEmail)
             startActivity(intent);
         }
     }

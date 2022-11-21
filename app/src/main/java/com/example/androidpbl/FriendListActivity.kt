@@ -16,7 +16,6 @@ import com.google.firebase.ktx.Firebase
 
 
 class FriendListActivity : AppCompatActivity() {
-    var listUserEmail: String? = null
     val firestore = Firebase.firestore
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -39,16 +38,13 @@ class FriendListActivity : AppCompatActivity() {
             val intent = Intent(this, FriendListActivity::class.java);
             startActivity(intent) // 검색창의 이름을 전달한다
         }
-
-        val intent = intent
-        listUserEmail = intent.getStringExtra("loginUserEmail").toString()
     }
 
     inner class RecyclerViewAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
         var UserArray: ArrayList<SearchFriend> = arrayListOf()
-//        val listUserEmail = "aaa@naver.com"
+        val listUserEmail = intent.getStringExtra("loginUserEmail").toString()
         init {  // users의 문서를 불러온 뒤 SearchFriend으로 변환해 ArrayList에 담음
-            firestore?.collection("users")?.document(listUserEmail.toString())?.collection("friends")?.orderBy("name", Query.Direction.ASCENDING)
+            firestore?.collection("users")?.document(listUserEmail)?.collection("friends")?.orderBy("name", Query.Direction.ASCENDING)
                 ?.addSnapshotListener { querySnapshot, firebaseFirestoreException ->
                 // ArrayList 비워줌
                 UserArray.clear()
