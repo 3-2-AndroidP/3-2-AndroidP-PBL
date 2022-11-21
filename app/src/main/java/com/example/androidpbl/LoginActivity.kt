@@ -28,7 +28,17 @@ class LoginActivity : AppCompatActivity() {
         loginButton.setOnClickListener {
             val emailInput = findViewById<EditText>(R.id.userEmailInput).text.toString()
             val password = findViewById<EditText>(R.id.passwordInput).text.toString()
-            doLogin(emailInput, password)
+            if(emailInput == "" || password==""){
+                AlertDialog.Builder(this)
+                    .setTitle("로그인 실패")
+                    .setMessage("이메일 또는 비밀번호가 일치하지 않습니다.")
+                    .setPositiveButton("확인", DialogInterface.OnClickListener { dialog, id ->
+
+                    })
+                    .show()
+            }
+            else
+                doLogin(emailInput, password)
         }
     }
 
