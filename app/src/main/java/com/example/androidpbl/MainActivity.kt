@@ -5,10 +5,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.*
-import android.widget.EditText
-import android.widget.ImageButton
-import android.widget.ImageView
-import android.widget.TextView
+import android.widget.*
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.androidpbl.databinding.ArticlesItemMainBinding
@@ -52,14 +49,14 @@ class MainActivity : AppCompatActivity() {
             finish()
         }
 
-        val postAddButton = findViewById<ImageButton>(R.id.mainPostAddButton)
+        val postAddButton = findViewById<Button>(R.id.mainPostAddButton)
         postAddButton.setOnClickListener {
             val intent = Intent(this, PostAddActivity::class.java)
             startActivity(intent)
         }
 
         // 화면좀 보려고 추가했습니다
-        val showFriendButton = findViewById<ImageView>(R.id.showFriendButton)
+        val showFriendButton = findViewById<Button>(R.id.mainShowFriendButton)
         val searchFriendText = findViewById<EditText>(R.id.editTextTextPersonName3)
 
         showFriendButton.setOnClickListener {

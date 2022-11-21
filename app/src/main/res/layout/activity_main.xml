@@ -19,13 +19,12 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        >
+        app:layout_constraintTop_toTopOf="parent">
 
         <ImageButton
             android:id="@+id/imageButton"
-            android:layout_width="43dp"
-            android:layout_height="50dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_marginStart="3dp"
             android:background="?attr/colorPrimary"
             app:layout_constraintStart_toStartOf="parent"
@@ -34,12 +33,14 @@
 
         <EditText
             android:id="@+id/editTextTextPersonName3"
-            android:layout_width="178dp"
-            android:layout_height="42dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
             android:ems="10"
             android:inputType="textPersonName"
-            android:text="친구찾기"
+            android:hint="친구찾기"
+            android:textColorHint="#FFFFFF"
+            android:textColor="#FFFFFF"
             app:layout_constraintStart_toEndOf="@+id/imageButton"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -47,20 +48,20 @@
             android:id="@+id/imageView10"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="60dp"
+            android:layout_marginStart="10dp"
             app:srcCompat="@drawable/profile"
             tools:layout_editor_absoluteX="154dp"
             tools:layout_editor_absoluteY="120dp" />
-
 
         <TextView
             android:id="@+id/logutTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
             android:layout_marginStart="10dp"
+            android:layout_marginTop="8dp"
             android:text="로그아웃"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            android:textColor="#FFFFFF"
             app:layout_constraintStart_toEndOf="@+id/imageView"
             app:layout_constraintTop_toTopOf="parent" />
     </androidx.appcompat.widget.Toolbar>
@@ -104,23 +105,29 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/mypostTextView" />
 
-    <ImageView
-        android:id="@+id/showFriendButton"
-        android:layout_width="204dp"
-        android:layout_height="67dp"
-        android:background="@drawable/post_button"
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="1dp"
+        android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:srcCompat="@drawable/friend_icon_main" />
+        app:layout_constraintStart_toStartOf="parent">
 
-    <ImageButton
-        android:id="@+id/mainPostAddButton"
-        android:layout_width="203dp"
-        android:layout_height="67dp"
-        android:background="@drawable/post_button"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@android:drawable/ic_menu_edit" />
+        <Button
+            android:id="@+id/mainPostAddButton"
+            android:layout_width="0dp"
+            android:layout_height="70dp"
+            android:layout_weight="1"
+            android:layout_marginEnd="1dp"
+            android:text="게시글 추가" />
+
+        <Button
+            android:id="@+id/mainShowFriendButton"
+            android:layout_width="0dp"
+            android:layout_height="70dp"
+            android:layout_weight="1"
+            android:text="친구목록" />
+    </LinearLayout>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
