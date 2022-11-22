@@ -77,8 +77,7 @@ class FriendDetailActivity : AppCompatActivity() {
         val listUserEmail = intent.getStringExtra("loginUserEmail").toString()
         val friendInfo = intent.getSerializableExtra("friendInfo") as SearchFriend
         init {  // users의 문서를 불러온 뒤 SearchFriend으로 변환해 ArrayList에 담음
-            firestore.collection("users").document(listUserEmail).collection("friends")
-                .document(friendInfo.email!!).collection("posts")
+            firestore.collection("users").document(friendInfo.email!!).collection("posts")
                 ?.get()?.addOnCompleteListener { data ->
                     for (doc in data.result) {
                         PostsArray.add(FriendPost(doc))
