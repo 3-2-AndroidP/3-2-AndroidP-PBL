@@ -17,9 +17,9 @@ import com.google.firebase.ktx.Firebase
 
 data class Posts( val title: String, val content : String) {
     constructor(doc: QueryDocumentSnapshot) :
-            this(doc.id, doc["내용"].toString())
+            this(doc.id, doc["content"].toString())
     constructor(key: String, map: Map<*, *>) :
-            this(key, map["내용"].toString())
+            this(key, map["content"].toString())
 }
 class MainActivity : AppCompatActivity() {
     private var adapter: MyAdapter? = null
@@ -53,6 +53,7 @@ class MainActivity : AppCompatActivity() {
         val postAddButton = findViewById<Button>(R.id.mainPostAddButton)
         postAddButton.setOnClickListener {
             val intent = Intent(this, PostAddActivity::class.java)
+            intent.putExtra("loginUserEmail",  loginUserEmail)
             startActivity(intent)
         }
 
