@@ -65,12 +65,14 @@ class FriendListActivity : AppCompatActivity() {
         inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
             val clickName = view.findViewById<TextView>(R.id.nameText)
             val clickEmail = view.findViewById<TextView>(R.id.textView6)
+            val listUserEmail = intent.getStringExtra("loginUserEmail").toString()
             fun bind(item: SearchFriend) {
                 clickName.text = item.name
                 clickEmail.text = item.email
                 itemView.setOnClickListener {
                     val intent = Intent(this@FriendListActivity, FriendDetailActivity::class.java)
                     intent.putExtra("friendInfo", item)
+                    intent.putExtra("loginUserEmail",  listUserEmail)
                     startActivity(intent);
                 }
 
