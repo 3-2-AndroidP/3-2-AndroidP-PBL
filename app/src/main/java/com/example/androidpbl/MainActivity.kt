@@ -11,7 +11,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.androidpbl.databinding.ArticlesItemMainBinding
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.CollectionReference
+import com.google.firebase.firestore.Query
 import com.google.firebase.firestore.QueryDocumentSnapshot
+import com.google.firebase.firestore.QuerySnapshot
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 
@@ -78,7 +80,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun updateList() {
-        itemsCollectionRef?.get()?.addOnSuccessListener {
+        itemsCollectionRef?.orderBy("postTime", Query.Direction.DESCENDING)?.get()?.addOnSuccessListener {
             val posts = mutableListOf<Posts>()
             for (doc in it) {
                 posts.add(Posts(doc))
