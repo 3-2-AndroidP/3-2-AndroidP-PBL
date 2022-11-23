@@ -12,10 +12,12 @@ import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.core.DatabaseInfo
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
+import java.time.LocalDateTime
 
 class PostAddActivity : AppCompatActivity() {
     private var loginUserEmail: String? = null
     val firestore = Firebase.firestore
+    val dateAndtime: Long = System.currentTimeMillis()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -38,7 +40,8 @@ class PostAddActivity : AppCompatActivity() {
         completeButton.setOnClickListener{
             val title = binding.editTitle.text.toString()
             val data = hashMapOf(
-                "content" to binding.editPost.text.toString()
+                "content" to binding.editPost.text.toString(),
+                "postTime" to dateAndtime
             )
 
             firestore?.collection("users")
