@@ -29,8 +29,11 @@ class FriendListActivity : AppCompatActivity() {
         binding.friendList.addItemDecoration(VerticalItemDecorator(10))
         binding.friendList.addItemDecoration(HorizontalItemDecorator(30))
 
+        val listUserEmail = intent.getStringExtra("loginUserEmail").toString()
+
         binding.postAddButton2.setOnClickListener {
             val intent = Intent(this, PostAddActivity::class.java)
+            intent.putExtra("loginUserEmail", listUserEmail)
             startActivity(intent)
         }
 
