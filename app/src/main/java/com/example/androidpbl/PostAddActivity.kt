@@ -6,6 +6,7 @@ import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
 import com.example.androidpbl.databinding.ActivityFriendListBinding
 import com.example.androidpbl.databinding.ActivityPostAddBinding
+import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.CollectionReference
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.core.DatabaseInfo
@@ -23,6 +24,15 @@ class PostAddActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         loginUserEmail= intent?.getStringExtra("loginUserEmail") ?: ""
+
+        val logOutButton = findViewById<Button>(R.id.logout3)
+        logOutButton.setOnClickListener {
+            Firebase.auth.signOut()
+            startActivity(
+                Intent(this, LoginActivity::class.java)
+            )
+            finish()
+        }
 
         val completeButton = findViewById<Button>(R.id.completeButton)
         completeButton.setOnClickListener{

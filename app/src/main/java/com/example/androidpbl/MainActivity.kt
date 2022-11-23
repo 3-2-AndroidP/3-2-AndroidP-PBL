@@ -93,7 +93,6 @@ class MainActivity : AppCompatActivity() {
 
         fun updateAdapterList(newList: MutableList<Posts>) {
             items = newList
-            println("posts $items")
             notifyDataSetChanged()
         }
 
@@ -116,6 +115,13 @@ class MainActivity : AppCompatActivity() {
                 smallContent = items[position].content.substring(0,20) + "..."
             holder.binding.myArticleTitle.text = items[position].title
             holder.binding.myArticleContent.text= smallContent
+            holder.binding.articleLayout.setOnClickListener {
+                val intent = Intent(context, PostDetailActivity::class.java)
+                intent.putExtra("loginUserEmail", loginUserEmail)
+                intent.putExtra("postTitle",items[position].title)
+                intent.putExtra("postContent",items[position].content)
+                startActivity(intent)
+            }
         }
 
         override fun getItemCount(): Int {
