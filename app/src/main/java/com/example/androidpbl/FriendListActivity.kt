@@ -5,11 +5,13 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.androidpbl.databinding.ActivityFriendListBinding
+import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.Query
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
@@ -40,6 +42,14 @@ class FriendListActivity : AppCompatActivity() {
         binding.showFriendButton2.setOnClickListener {
             val intent = Intent(this, FriendListActivity::class.java);
             startActivity(intent) // 검색창의 이름을 전달한다
+        }
+
+        binding.logout2.setOnClickListener {
+            Firebase.auth.signOut()
+            startActivity(
+                Intent(this, LoginActivity::class.java)
+            )
+            finish()
         }
     }
 

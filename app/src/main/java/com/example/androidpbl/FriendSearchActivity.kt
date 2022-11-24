@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.androidpbl.databinding.ActivityFriendSearchBinding
 import com.google.android.material.snackbar.Snackbar
+import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.Query
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
@@ -40,6 +41,7 @@ class FriendSearchActivity : AppCompatActivity() {
 
         binding.postAddButton3.setOnClickListener {
             val intent = Intent(this, PostAddActivity::class.java)
+            intent.putExtra("loginUserEmail", loginUserEmail)
             startActivity(intent)
         }
 
@@ -50,6 +52,14 @@ class FriendSearchActivity : AppCompatActivity() {
         }
 
         binding.textView3.setText("'${searchName}' 검색 결과")
+
+        binding.logout.setOnClickListener {
+            Firebase.auth.signOut()
+            startActivity(
+                Intent(this, LoginActivity::class.java)
+            )
+            finish()
+        }
     }
         inner class RecyclerViewAdapter2 : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
         var UserArray: ArrayList<SearchFriend> = arrayListOf()
