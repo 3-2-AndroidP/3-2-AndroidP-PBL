@@ -23,7 +23,6 @@ import com.google.firebase.firestore.QueryDocumentSnapshot
 import com.google.firebase.firestore.auth.User
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
-import org.w3c.dom.Text
 
 //data class FriendPosts( val title: String, val content : String) {
 //    constructor(doc: QueryDocumentSnapshot) :
@@ -50,9 +49,9 @@ class FriendDetailActivity : AppCompatActivity() {
 
         loginUserEmail= intent?.getStringExtra("loginUserEmail") ?: ""
 
-        binding.friendDetailRecyclerView.adapter = RecyclerViewAdapter()
-        binding.friendDetailRecyclerView.layoutManager = LinearLayoutManager(this)
-        binding.friendDetailRecyclerView.setHasFixedSize(true)
+        binding.friendRecyclerView.adapter = RecyclerViewAdapter()
+        binding.friendRecyclerView.layoutManager = LinearLayoutManager(this)
+        binding.friendRecyclerView.setHasFixedSize(true)
 
         // 클릭한 친구의 이메일
         val intent = intent //전달할 데이터를 받을 Intent
@@ -99,9 +98,9 @@ class FriendDetailActivity : AppCompatActivity() {
     inner class RecyclerViewAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
         var PostsArray = mutableListOf<FriendPost>()
         val listUserEmail = intent.getStringExtra("loginUserEmail").toString()
-        val friendInfo = intent.getSerializableExtra("friendInfo") as SearchFriend
-        init {  // users의 문서를 불러온 뒤 SearchFriend으로 변환해 ArrayList에 담음
-            firestore.collection("users").document(friendInfo.email!!).collection("posts")
+        val friendInfo = intent.getSerializableExtra("friendInfo") as SearchFriend?
+        init {
+            firestore.collection("users").document(friendInfo?.email!!).collection("posts")
                 ?.get()?.addOnCompleteListener { data ->
                     for (doc in data.result) {
                         PostsArray.add(FriendPost(doc))
@@ -122,6 +121,13 @@ class FriendDetailActivity : AppCompatActivity() {
             fun bind(item: FriendPost) {
                 postTitle.text = item.title
                 postContent.text = item.content
+                itemView.setOnClickListener {
+                    val intent = Intent(this@FriendDetailActivity, PostDetailActivity::class.java)
+                    intent.putExtra("loginUserEmail", loginUserEmail)
+                    intent.putExtra("postTitle",item.title)
+                    intent.putExtra("postContent",item.content)
+                    startActivity(intent);
+                }
             }
         }
 
@@ -136,6 +142,7 @@ class FriendDetailActivity : AppCompatActivity() {
             viewHolder.findViewById<TextView>(R.id.myArticleContent).text = smallContent
             holder.bind(PostsArray[position])
         }
+
 
         // 리사이클러뷰의 아이템 총 개수 반환
         override fun getItemCount(): Int {
