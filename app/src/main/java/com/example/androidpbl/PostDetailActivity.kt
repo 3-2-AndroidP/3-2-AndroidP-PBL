@@ -30,6 +30,7 @@ class PostDetailActivity : AppCompatActivity() {
         val logOutButton = findViewById<Button>(R.id.logout5)
         logOutButton.setOnClickListener {
             Firebase.auth.signOut()
+            finishAffinity()
             startActivity(
                 Intent(this, LoginActivity::class.java)
             )

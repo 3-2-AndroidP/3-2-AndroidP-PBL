@@ -55,6 +55,7 @@ class FriendSearchActivity : AppCompatActivity() {
 
         binding.logout.setOnClickListener {
             Firebase.auth.signOut()
+            finishAffinity()
             startActivity(
                 Intent(this, LoginActivity::class.java)
             )

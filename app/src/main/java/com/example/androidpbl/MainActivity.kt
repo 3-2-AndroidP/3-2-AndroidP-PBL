@@ -50,6 +50,7 @@ class MainActivity : AppCompatActivity() {
         val logOutButton = findViewById<TextView>(R.id.logutTextView)
         logOutButton.setOnClickListener {
             Firebase.auth.signOut()
+            finishAffinity()
             startActivity(
                 Intent(this, LoginActivity::class.java)
             )
