@@ -21,6 +21,7 @@ class PostAddActivity : AppCompatActivity() {
     private var loginUserEmail: String? = null
     val firestore = Firebase.firestore
     val dateAndtime: Long = System.currentTimeMillis()
+    private var itemsCollectionRef : CollectionReference? =null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -29,6 +30,10 @@ class PostAddActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         loginUserEmail= intent?.getStringExtra("loginUserEmail") ?: ""
+
+        itemsCollectionRef = firestore.collection("users").document(loginUserEmail!!).collection("posts")
+
+
 
         val logOutButton = findViewById<Button>(R.id.logout3)
         logOutButton.setOnClickListener {
@@ -41,17 +46,17 @@ class PostAddActivity : AppCompatActivity() {
 
         val completeButton = findViewById<Button>(R.id.completeButton)
         completeButton.setOnClickListener{
+
             val title = binding.editTitle.text.toString()
             val data = hashMapOf(
                 "content" to binding.editPost.text.toString(),
                 "postTime" to dateAndtime
             )
-
-            firestore?.collection("users")
-                ?.document(loginUserEmail!!)?.collection("posts")?.document(title)
-                ?.set(data)
+            val storeTitle = itemsCollectionRef?.document(title)?.id ?: title
+            itemsCollectionRef!!.document(storeTitle).set(data)
 
             val intent = Intent(this, MainActivity::class.java)
+            intent.putExtra("anotherEmail", loginUserEmail)
             startActivity(intent)
         }
 
