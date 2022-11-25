@@ -3,9 +3,11 @@ package com.example.androidpbl
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
+import android.widget.ImageButton
 import androidx.appcompat.app.AppCompatActivity
 import com.example.androidpbl.databinding.ActivityFriendListBinding
 import com.example.androidpbl.databinding.ActivityPostAddBinding
+import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.CollectionReference
 import com.google.firebase.firestore.FirebaseFirestore
@@ -51,6 +53,20 @@ class PostAddActivity : AppCompatActivity() {
 
             val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
+        }
+
+        val searchFriendButton = findViewById<ImageButton>(R.id.imageButton)
+        searchFriendButton.setOnClickListener {
+            val searchName = binding.editTextTextPersonName2.text.toString()
+            if(searchName == ""){
+                Snackbar.make(it, "검색할 이름을 입력해주세요.", Snackbar.LENGTH_LONG). show();
+            }
+            else {
+                val intent = Intent(this, FriendSearchActivity::class.java)
+                intent.putExtra("searchName", searchName)
+                intent.putExtra("loginUserEmail", loginUserEmail)
+                startActivity(intent);
+            }
         }
     }
 }

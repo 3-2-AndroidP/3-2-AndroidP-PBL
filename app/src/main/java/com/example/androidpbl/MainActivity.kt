@@ -9,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.androidpbl.databinding.ArticlesItemMainBinding
+import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.CollectionReference
 import com.google.firebase.firestore.Query
@@ -72,10 +73,15 @@ class MainActivity : AppCompatActivity() {
         val searchFriendButton = findViewById<ImageButton>(R.id.imageButton)
         searchFriendButton.setOnClickListener {
             val searchName = searchFriendText.text.toString()
-            val intent = Intent(this, FriendSearchActivity::class.java)
-            intent.putExtra("searchName", searchName)
-            intent.putExtra("loginUserEmail", loginUserEmail)
-            startActivity(intent);
+            if(searchName == ""){
+                Snackbar.make(it, "검색할 이름을 입력해주세요.", Snackbar.LENGTH_LONG). show();
+            }
+            else {
+                val intent = Intent(this, FriendSearchActivity::class.java)
+                intent.putExtra("searchName", searchName)
+                intent.putExtra("loginUserEmail", loginUserEmail)
+                startActivity(intent);
+            }
         }
     }
 

@@ -15,6 +15,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.androidpbl.databinding.ActivityFriendDetailBinding
 import com.example.androidpbl.databinding.ArticlesItemMainBinding
+import com.google.android.material.snackbar.Snackbar
+import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.CollectionReference
 import com.google.firebase.firestore.Query
 import com.google.firebase.firestore.QueryDocumentSnapshot
@@ -69,6 +71,28 @@ class FriendDetailActivity : AppCompatActivity() {
             val intent = Intent(this, FriendListActivity::class.java)
             intent.putExtra("loginUserEmail",  loginUserEmail)
             startActivity(intent) // 검색창의 이름을 전달한다
+        }
+
+        val searchFriendButton = findViewById<ImageButton>(R.id.imageButton)
+        searchFriendButton.setOnClickListener {
+            val searchName = binding.editTextTextPersonName.text.toString()
+            if(searchName == ""){
+                Snackbar.make(it, "검색할 이름을 입력해주세요.", Snackbar.LENGTH_LONG). show();
+            }
+            else {
+                val intent = Intent(this, FriendSearchActivity::class.java)
+                intent.putExtra("searchName", searchName)
+                intent.putExtra("loginUserEmail", loginUserEmail)
+                startActivity(intent);
+            }
+        }
+
+        binding.logout4.setOnClickListener {
+            Firebase.auth.signOut()
+            startActivity(
+                Intent(this, LoginActivity::class.java)
+            )
+            finish()
         }
     }
 
