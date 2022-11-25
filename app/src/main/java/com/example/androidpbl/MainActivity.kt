@@ -34,8 +34,11 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         loginUserEmail= intent?.getStringExtra("loginUserEmail") ?: ""
+        if(loginUserEmail == ""){
+            loginUserEmail = intent?.getStringExtra("anotherEmail") ?: ""
+        }
 
-        itemsCollectionRef = firestore.collection("users").document(loginUserEmail!!).collection("posts")
+        itemsCollectionRef = firestore.collection("users/${loginUserEmail}/posts")
 
         val recyclerView = findViewById<RecyclerView>(R.id.main_recyclerView)
         recyclerView.layoutManager = LinearLayoutManager(this)

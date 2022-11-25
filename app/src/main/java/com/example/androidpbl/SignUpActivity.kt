@@ -29,10 +29,19 @@ class SignUpActivity : AppCompatActivity() {
             val signupBirthInput = findViewById<EditText>(R.id.signup_BirthInput).text.toString()
             val signupEmailInput = findViewById<EditText>(R.id.signup_EmailInput).text.toString()
             val signupPWInput = findViewById<EditText>(R.id.signup_PWInput).text.toString()
-
+            println(signupNameInput == "")
             val birthYear = signupBirthInput.split("/")
             println(birthYear)
-            if(birthYear[0].toInt() < 1900 || birthYear[0].toInt()>=2100){
+            if(signupNameInput == "" || signupBirthInput == "" || signupEmailInput == "" || signupPWInput == ""){
+                AlertDialog.Builder(this)
+                    .setTitle("회원가입 실패")
+                    .setMessage("빈 항목이 있어 회원가입이 불가능합니다.")
+                    .setPositiveButton("확인", DialogInterface.OnClickListener { dialog, id ->
+
+                    })
+                    .show()
+            }
+            else if(birthYear[0].toInt() < 1900 || birthYear[0].toInt()>=2100){
                 AlertDialog.Builder(this)
                     .setTitle("Warning")
                     .setMessage("생년월일 입력오류")
@@ -41,7 +50,7 @@ class SignUpActivity : AppCompatActivity() {
                     })
                     .show()
             }
-            if(!Pattern.matches(emailValidation, signupEmailInput.trim())){
+            else if(!Pattern.matches(emailValidation, signupEmailInput.trim())){
                 AlertDialog.Builder(this)
                     .setTitle("Warning")
                     .setMessage("이메일 입력오류")
