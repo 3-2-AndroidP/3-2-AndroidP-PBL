@@ -1,9 +1,11 @@
 package com.example.androidpbl
 
+import android.content.DialogInterface
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import android.widget.ImageButton
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.example.androidpbl.databinding.ActivityFriendListBinding
 import com.example.androidpbl.databinding.ActivityPostAddBinding
@@ -48,16 +50,26 @@ class PostAddActivity : AppCompatActivity() {
         completeButton.setOnClickListener{
 
             val title = binding.editTitle.text.toString()
-            val data = hashMapOf(
-                "content" to binding.editPost.text.toString(),
-                "postTime" to dateAndtime
-            )
-            val storeTitle = itemsCollectionRef?.document(title)?.id ?: title
-            itemsCollectionRef!!.document(storeTitle).set(data)
+            val content = binding.editPost.text.toString()
 
-            val intent = Intent(this, MainActivity::class.java)
-            intent.putExtra("anotherEmail", loginUserEmail)
-            startActivity(intent)
+            if(title == "" || content == "") {
+                AlertDialog.Builder(this)
+                    .setTitle("게시물 저장 실패")
+                    .setMessage("제목 또는 내용이 비어있습니다.")
+                    .setPositiveButton("확인", DialogInterface.OnClickListener { dialog, id ->
+                    })
+                    .show()
+            } else {
+                val data = hashMapOf(
+                    "content" to binding.editPost.text.toString(),
+                    "postTime" to dateAndtime
+                )
+                val storeTitle = itemsCollectionRef?.document(title)?.id ?: title
+                itemsCollectionRef!!.document(storeTitle).set(data)
+                val intent = Intent(this, MainActivity::class.java)
+                intent.putExtra("anotherEmail", loginUserEmail)
+                startActivity(intent)
+            }
         }
 
         val searchFriendButton = findViewById<ImageButton>(R.id.imageButton)
