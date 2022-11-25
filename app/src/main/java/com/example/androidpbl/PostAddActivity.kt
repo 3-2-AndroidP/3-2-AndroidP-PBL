@@ -9,6 +9,7 @@ import com.example.androidpbl.databinding.ActivityPostAddBinding
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.CollectionReference
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.SetOptions
 import com.google.firebase.firestore.core.DatabaseInfo
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
