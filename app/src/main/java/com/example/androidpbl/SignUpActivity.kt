@@ -65,7 +65,7 @@ class SignUpActivity : AppCompatActivity() {
     }
     private fun updateList() {
         itemsCollectionRef.get().addOnSuccessListener {
-            val items = mutableListOf<Item>()
+//            val items = mutableListOf<Item>()
             for (doc in it) {
                 println(doc)
             }
